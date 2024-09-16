@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block title %}Confirm Email Address{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2 class="text-center">Confirm Email Address</h2>
+    {% if confirmation %}
+        <p class="text-center">Thank you for confirming your email address!</p>
+        <p class="text-center">
+            <a href="{% url 'account_login' %}" class="btn btn-primary">Log In</a>
+        </p>
+    {% else %}
+        <p class="text-center">Invalid or Expired Confirmation Link</p>
+        <p class="text-center">
+            <a href="{% url 'account_email_verification_sent' %}" class="btn btn-secondary">Resend Confirmation Email</a>
+        </p>
+    {% endif %}
+</div>
+{% endblock %}

@@ -5,7 +5,7 @@ from .models import UserProfile
 
 admin.site.unregister(User)
 
-class UserProfileInline(admin.StackInline):
+class UserProfileInline(admin.StackedInline):
     model = UserProfile
     can_delete = False
 

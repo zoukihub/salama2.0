@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Search Results for "{{ query }}"</h1>
+    <ul>
+        {% for product in products %}
+        <li>
+            <a href="{% url 'product_detail' product.id product.slug %}">
+                {{ product.name }} - ${{ product.price }}
+            </a>
+        </li>
+      {% empty %}
+        <p>No products found matching your query.</p>
+      {% endfor %}
+    </ul>
+    <form method="GET" action="{% url 'product_search' %}">
+        <input type="text" name="q" placeholder="Search for products...">
+        <button type="submit">Search</button>
+    </form>
+{% endblock %}

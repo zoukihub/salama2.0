@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'orders',
     'cart',
     'users.apps.UsersConfig',
+    'allauth.socialaccount.providers.google',
 ]
 
 MIDDLEWARE = [

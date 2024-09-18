@@ -5,4 +5,7 @@ app_name = 'order'
 
 urlpatterns = [
     path('', views.order_list, name='order_list'),
+    path('payment/<int:order_id>/', views.payment, name='payment'),
+    path('payment_success/', views.payment_success, name='payment_success'),
+    path('payment_cancel/', views.payment_cancel, name='payment_cancel'),
 ]

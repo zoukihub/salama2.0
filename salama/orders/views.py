@@ -60,8 +60,13 @@ def payment_success(request):
 def payment_cancel(request):
     return render(request, 'orders/payment_cancel.html')
 
-
+@login_required
 def order_list(request):
-    return render(request, 'orders/order_list.html')
+    orders = Order.objects.filter(user=request.user)
+    return render(request, 'orders/order_list.html', {'orders': orders})
 
+@login_required
+def order_detail(request, order_id):
+    order = get_object_or_404(Order, id=order_id, user=request.user)
+    return render(request, 'orders/order_detail.html', {'order': order})
 # Create your views here.

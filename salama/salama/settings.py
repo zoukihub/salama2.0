@@ -162,3 +162,6 @@ MESSAGE_TAGS = {
     messages.WARNING: 'warning',
     messages.ERROR: 'danger',
 }
+
+STRIPE_PUBLISHABLE_KEY = 'your-publishable-key'
+STRIPE_SECRET_KEY = 'your-secret-key'

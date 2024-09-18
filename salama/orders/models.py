@@ -14,11 +14,15 @@ class Order(models.Model):
     updated = models.DateTimeField(auto_now=True)
     paid = models.BooleanField(default=False)
 
+    def get_total_cost(self):
+        return sum(item.price * item.quantity for item in self.items.all())
+
     class Meta:
         ordering = ['-created']
     
     def __str__(self):
         return f'Order {self.id}'
+    
 
 class OrderItem(models.Model):
     order = models.ForeignKey(Order, related_name='items', on_delete=models.CASCADE)

@@ -1,6 +1,7 @@
 from django.urls import reverse
 from django.test import TestCase
 from.models import Category, Product
+from .forms import ProductForm
 
 class ProductModelTest(TestCase):
     def setUp(self):
@@ -43,4 +44,21 @@ class ProductListViewTest(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'productsproduct/list.html')
         self.assertIn(self.product, response.context['products'])
+
+class ProductFormTest(TestCase):
+    def test_valid_form(self):
+        """"Test if the form is valid with correct data"""
+        data = {
+            'name': 'Stethoscope',
+            'price': 99.99
+        }
+        form = ProductForm(data)
+        self.assertTrue(form.is_valid())
+
+    def test_invalid_form(self):
+        """"Test if the form is invalid when required fields are missing"""
+        form = ProductForm({})
+        self.assertFalse(form.is_valid())
+        self.assertIn('name', form.errors)
+
 # Create your tests here.

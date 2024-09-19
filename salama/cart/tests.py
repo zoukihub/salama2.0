@@ -1,7 +1,7 @@
 from django.test import TestCase
 from django.urls import reverse
 from products.models import Category, Product
-from cart.models import Cart
+from .models import Cart
 
 class CartIntegrationTest(TestCase):
     def setUp(self):

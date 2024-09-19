@@ -50,7 +50,8 @@ def product_create(request):
     
 def product_list(request):
     products = Product.objects.all()
-    return render(request, 'products/product/list.html', {'product': products})
+    context = {'products: products'}
+    return render(request, 'products/product/list.html', context)
 
 
 # Create your views here.

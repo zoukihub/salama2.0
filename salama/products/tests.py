@@ -40,9 +40,9 @@ class ProductListViewTest(TestCase):
 
     def test_product_list_view(self):
         """"Test if the product list view returns the correct status code and template"""
-        response=self.client.get(reverse('product_list'))
+        response=self.client.get(reverse('products:product_list'))
         self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, 'productsproduct/list.html')
+        self.assertTemplateUsed(response, 'products/product/list.html')
         self.assertIn(self.product, response.context['products'])
 
 class ProductFormTest(TestCase):

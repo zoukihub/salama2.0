@@ -35,6 +35,7 @@ def product_search(request):
     })
 
 from django.shortcuts import render, redirect
+from django.template import loader
 from .forms import ProductForm
 from .models import Product
 
@@ -51,6 +52,8 @@ def product_create(request):
 def product_list(request):
     products = Product.objects.all()
     context = {'products: products'}
+    template = loader.get_template('products/product/list.html')
+    print(f"Using template: {template.template.name}")
     return render(request, 'products/product/list.html', context)
 
 

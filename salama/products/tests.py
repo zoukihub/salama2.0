@@ -50,7 +50,11 @@ class ProductFormTest(TestCase):
         """"Test if the form is valid with correct data"""
         data = {
             'name': 'Stethoscope',
-            'price': 99.99
+            'price': 99.99,
+            'category': 1,
+            'description': 'High quality stethoscope',
+            'stock': 50,
+            'available': True
         }
         form = ProductForm(data)
         self.assertTrue(form.is_valid())

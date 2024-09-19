@@ -46,12 +46,14 @@ class ProductListViewTest(TestCase):
         self.assertIn(self.product, response.context['products'])
 
 class ProductFormTest(TestCase):
+    def setUp(self):
+        self.category = Category.objects.create(name='Medical Devices', slug='medical-devices')
     def test_valid_form(self):
         """"Test if the form is valid with correct data"""
         data = {
             'name': 'Stethoscope',
             'price': 99.99,
-            'category': 1,
+            'category': self.category.id,
             'description': 'High quality stethoscope',
             'stock': 50,
             'available': True

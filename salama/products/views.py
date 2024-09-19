@@ -47,4 +47,10 @@ def product_create(request):
         else:
             form = ProductForm()
         return render(request, 'products/product_form.html', {'form': form})
+    
+def product_list(request):
+    products = Product.objects.all()
+    return render(request, 'products/product/list.html', {'product': products})
+
+
 # Create your views here.

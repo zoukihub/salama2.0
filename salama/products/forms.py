@@ -22,3 +22,13 @@ class ProductForm(forms.ModelForm):
             'stock': forms.NumberInput(attrs={'class': 'form-control'}),
             'available': forms.CheckboxInput(attrs={'class': 'form-check-input'}),
         }
+
+from django import forms
+
+class ProductSearchForm(forms.Form):
+    query = forms.CharField(
+        label='Search Products',
+        max_length=100,
+        required=False,
+        widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Search for products...'})  
+    )

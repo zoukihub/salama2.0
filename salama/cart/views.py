@@ -1,3 +1,4 @@
+from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404, redirect
 from django.views.decorators.http import require_POST
 from products.models import Product
@@ -29,7 +30,13 @@ from django.shortcuts import render, redirect
 from .models import Cart
 
 def cart_add(request):
-    pass
+    product_id = request.POST.get('product_id')
+    product = get_object_or_404(Product, id=product_id)
+    quantity = int(request.POST.get('quantity', 1))
+
+    cart = Cart.objects.create(product=product, quantity=quantity)
+
+    return redirect('cart:cart_detail')
 
 
 

@@ -17,7 +17,7 @@ class CartIntegrationTest(TestCase):
         )
     def test_add_product_to_cart(self):
         """"Test adding a product to the cart"""
-        response = self.client.post(reverse('cart_add'), {'product_id' : self.product.id, 'quantity': 1})
+        response = self.client.post(reverse('cart:cart_add'), {'product_id' : self.product.id, 'quantity': 1})
         self.assertEqual(response.status_code, 302)
         cart = self.client.session['cart']
         self.assertIn(str(self.product.id), cart)

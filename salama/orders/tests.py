@@ -19,7 +19,7 @@ class CheckoutIntegrationTest(TestCase):
     def test_checkout_process(self):
         """Test completing a checkout"""
         response = self.client.post(reverse('cart:cart_add'), {'product_id': self.product.id, 'quantity': 1})
-        response = self.client.get(reverse('checkout'))
+        response = self.client.get(reverse('orders:checkout'))
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'orders/checkout.html')
 

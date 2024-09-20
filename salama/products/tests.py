@@ -18,6 +18,7 @@ class ProductModelTest(TestCase):
     
     def test_product_creation(self):
         """"Test if the product is created correctly"""
+        expected_url = f'/products/product/{self.product.id}/stethoscope/'
         self.assertEqual(self.product.name, 'Stethoscope')
         self.assertEqual(self.product.get_absolute_url(), f'/product/{self.product.id}/stethoscope/')
     

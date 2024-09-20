@@ -7,7 +7,7 @@ class ProductModelTest(TestCase):
     def setUp(self):
         self.category = Category.objects.create(name= 'Medical Devices', slug='medical-devices')
         self.product = Product.objects.create(
-            category=self.category,
+            category=self.category.id,
             name='Stethoscope',
             slug='stethoscope',
             description='High quality stethoscope.',

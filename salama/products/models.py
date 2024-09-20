@@ -40,6 +40,6 @@ class Product(models.Model):
     
     def get_absolute_url(self):
         return reverse('products:product_detail', args=[self.id, self.slug])
-
+        return f'/products/product/{self.id}/{self.slug}/'
 
 # Create your models here.

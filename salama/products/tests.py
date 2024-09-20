@@ -60,6 +60,7 @@ class ProductFormTest(TestCase):
         }
         form = ProductForm(data)
         self.assertTrue(form.is_valid())
+        print(form.errors)
 
     def test_invalid_form(self):
         """"Test if the form is invalid when required fields are missing"""

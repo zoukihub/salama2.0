@@ -1,10 +1,11 @@
-from django.test import TestCase
+from django.test import TestCase, Client
 from django.urls import reverse
 from products.models import Category, Product
 from .models import Cart
 
 class CartIntegrationTest(TestCase):
     def setUp(self):
+        self.client = Client()
         self.category = Category.objects.create(name='Medical Devices', slug='medical-devices')
         self.product = Product.objects.create(
             category=self.category,
@@ -15,11 +16,11 @@ class CartIntegrationTest(TestCase):
             stock=50,
             available=True
         )
-
+        self.client.post('/cart/add/', {'product_id': self.product.id, 'quantity': 1})
         session = self.client.session
         session['cart'] = {}
         session.save()
-        
+
     def test_add_product_to_cart(self):
         """"Test adding a product to the cart"""
         response = self.client.post(reverse('cart:cart_add'), {'product_id' : self.product.id, 'quantity': 1})

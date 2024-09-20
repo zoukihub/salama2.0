@@ -15,6 +15,11 @@ class CartIntegrationTest(TestCase):
             stock=50,
             available=True
         )
+
+        session = self.client.session
+        session['cart'] = {}
+        session.save()
+        
     def test_add_product_to_cart(self):
         """"Test adding a product to the cart"""
         response = self.client.post(reverse('cart:cart_add'), {'product_id' : self.product.id, 'quantity': 1})

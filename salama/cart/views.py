@@ -33,12 +33,14 @@ def cart_add(request):
     product_id = request.POST.get('product_id')
     product = get_object_or_404(Product, id=product_id)
     quantity = int(request.POST.get('quantity', 1))
-
     cart = request.session.get('cart', {})
+
     if product_id in cart:
-        cart[product_id] += quantity
+        cart[product_id]['quantiy'] += quantity
     else: 
-        cart[product_id] = quantity
+        cart[product_id] = {'quantity': quantity}
+    
+    print(f"Cart structure: {cart}")
     
     request.session['cart'] = cart
     return redirect('cart:cart_detail')

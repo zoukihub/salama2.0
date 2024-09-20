@@ -34,9 +34,17 @@ def cart_add(request):
     product = get_object_or_404(Product, id=product_id)
     quantity = int(request.POST.get('quantity', 1))
 
+    cart = request.session.get('cart', {})
+    if product_id in cart:
+        cart[product_id] += quantity
+    else: 
+        cart[product_id] = quantity
+    
+    request.session['cart'] = cart
+    return redirect('cart:cart_detail')
+
     cart = Cart.objects.create(product=product, quantity=quantity)
 
-    return redirect('cart:cart_detail')
 
 
 

@@ -5,6 +5,7 @@ from .forms import OrderCreateForm
 from django.contrib.auth.decorators import login_required
 import stripe
 from django.conf import settings
+from django.http import HttpResponse
 
 stripe.api_key = settings.STRIPE_SECRET_KEY
 
@@ -69,4 +70,7 @@ def order_list(request):
 def order_detail(request, order_id):
     order = get_object_or_404(Order, id=order_id, user=request.user)
     return render(request, 'orders/order_detail.html', {'order': order})
+
+def checkout(request):
+    return render(request, 'orders/checkout.html')
 # Create your views here.

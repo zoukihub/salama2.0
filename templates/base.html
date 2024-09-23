@@ -8,6 +8,23 @@
     <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
     <link rel="icon" type="image/x-icon" href="{% static 'favicon.ico' %}">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script>
+        {%  if user.is_authenticated  %}
+        var ws_scheme = window.location.protocol == "https:" ? "wss" : "ws";
+        var notificationSocket = new WebSocket(
+            ws_scheme + '://' + window.location.host + '/ws/notifications/');
+        
+        notificationSocket.onmessage = function(e) {
+            var data = JSON.parse(e.data);
+            var message = data['message'];
+            alert(message);
+        };
+
+        notificationSocket.onclose = function(e) {
+            console.error('Notification socket closed unexpectedly');
+        };
+        {% endif %}
+    </script>
 </head>
 <body>
     <header>

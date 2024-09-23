@@ -38,6 +38,8 @@ from django.shortcuts import render, redirect
 from django.template import loader
 from .forms import ProductForm
 from .models import Product
+from channels.layers import get_channel_layer
+from asgiref.sync import async_to_sync
 
 def product_create(request):
     if request.method == 'POST':
@@ -56,5 +58,22 @@ def product_list(request):
     print(f"Using template: {template.template.name}")
     return render(request, 'products/product/list.html', context)
 
+def add_product(request):
+    if request.method == 'POST':
+        form = ProductForm(request.POST, request.FILES)
+        if form.is_valid():
+            product = form.save()
+            channel_layer = get_channel_layer()
+            async_to_sync(channel_layer.group_send)(
+                'notifications',
+                {
+                    'type': 'send_notification',
+                    'message': f'New product "{product.name}" added.'
+                }
+            )
+            return redirect('products:product_list')
+        else:
+            form = ProductForm()
+        return render(request, 'products/add_product.html', {'form': form})
 
 # Create your views here.

@@ -51,6 +51,7 @@ INSTALLED_APPS = [
     'cart',
     'users.apps.UsersConfig',
     'allauth.socialaccount.providers.google',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [

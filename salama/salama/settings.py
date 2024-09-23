@@ -93,6 +93,8 @@ CHANNEL_LAYERS = {
         },
     },
 }
+
+CELERY_BROKER_URL = 'redis://localhost:8000/0'
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 

@@ -83,7 +83,7 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'salama.wsgi.application'
-
+ASGI_APLLICATION = 'salama.routing.application'
 
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases

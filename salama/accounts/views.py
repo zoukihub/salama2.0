@@ -15,4 +15,4 @@ def signup(request):
     return render(request, 'accounts/signup.html', {'form': form})
 
 def login(request):
-    return render(request, 'account/login.html')
+    return render(request, 'accounts/login.html')

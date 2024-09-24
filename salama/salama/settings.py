@@ -49,7 +49,6 @@ INSTALLED_APPS = [
     'orders',
     'users',
     'cart',
-    'users.apps.UsersConfig',
     'allauth.socialaccount.providers.google',
     'rest_framework',
 ]

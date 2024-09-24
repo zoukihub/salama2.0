@@ -13,7 +13,6 @@ class ProductForm(forms.ModelForm):
             'stock',
             'available',
             'image',
-            '__all__'
         ]
         widgets = {
             'name': forms.TextInput(attrs={'class': 'form-control'}),

@@ -23,12 +23,13 @@ from products import views as product_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('accounts/', include('allauth.urls', 'accounts.urls')),
+    path('accounts/', include('allauth.urls')),
+    path('accounts/', include('accounts.urls', namespace='accounts')),
     path('cart/', include('cart.urls', namespace='cart')),
     path('orders/', include('orders.urls', namespace='orders')),
     path('products/', include('products.urls', namespace='products')),
     path('', product_views.product_list, name='home'),
-    
+
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -19,10 +19,11 @@ from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 from products import views as product_views
-
+from django.http import HttpResponseNotFound
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('signup/', include(('accounts.urls', 'accounts'), namespace='accounts')),
     path('accounts/', include('allauth.urls')),
     path('accounts/', include('accounts.urls', namespace='accounts')),
     path('cart/', include('cart.urls', namespace='cart')),
@@ -31,5 +32,9 @@ urlpatterns = [
     path('', product_views.product_list, name='home'),
 
 ]
+def custom_page_not_found_view(request, exception):
+    return HttpResponseNotFound(f"The requested URL {request.path} was not found.")
+
+handler404 = 'salama.urls.custom_page_not_found_view'
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -54,7 +54,7 @@ def product_create(request):
 def product_list(request):
     products = Product.objects.all()
     context = {'products': products}
-    template = loader.get_template('products/product/list.html')
+    template = loader.get_template('products/templates/products/list.html')
     print(f"Using template: {template.template.name}")
     return render(request, 'products/templates/products/product_list.html', context)
 

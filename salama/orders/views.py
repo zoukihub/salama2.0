@@ -32,7 +32,7 @@ def order_create(request):
             return redirect('orders:payment', order.id)
     else:
         form = OrderCreateForm()
-    return render(request, 'orders/order_create.html', {'cart': cart, 'form': form})
+    return render(request, 'orders/templates/orders/order_create.html', {'cart': cart, 'form': form})
 
 @login_required
 def payment(request, order_id):
@@ -53,24 +53,24 @@ def payment(request, order_id):
             return redirect('orders:payment_cancel')
     else:
         stripe_pub_key = settings.STRIPE_PUBLISHABLE_KEY
-        return render(request, 'orders/payment.html', {'order': order, 'stripe_pub_key': stripe_pub_key})
+        return render(request, 'orders/templates/orders/payment.html', {'order': order, 'stripe_pub_key': stripe_pub_key})
     
 def payment_success(request):
-    return render(request, 'orders/payment_success.html')
+    return render(request, 'orders/templates/orders/payment_success.html')
 
 def payment_cancel(request):
-    return render(request, 'orders/payment_cancel.html')
+    return render(request, 'orders/templates/orders/payment_cancel.html')
 
 @login_required
 def order_list(request):
     orders = Order.objects.filter(user=request.user)
-    return render(request, 'orders/order_list.html', {'orders': orders})
+    return render(request, 'orders/templates/orders/order_list.html', {'orders': orders})
 
 @login_required
 def order_detail(request, order_id):
     order = get_object_or_404(Order, id=order_id, user=request.user)
-    return render(request, 'orders/order_detail.html', {'order': order})
+    return render(request, 'orders/templates/orders/order_detail.html', {'order': order})
 
 def checkout(request):
-    return render(request, 'orders/checkout.html')
+    return render(request, 'orders/templates/orders/checkout.html')
 # Create your views here.

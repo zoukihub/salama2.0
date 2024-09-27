@@ -24,7 +24,7 @@ def cart_remove(request, product_id):
 
 def cart_detail(request):
     cart = Cart(request)
-    return render(request, 'cart/cart_detail.html', {'cart': cart})
+    return render(request, 'cart/templates/cart/cart_detail.html', {'cart': cart})
 
 from django.shortcuts import render, redirect
 from .models import Cart

@@ -21,6 +21,6 @@ class CheckoutIntegrationTest(TestCase):
         response = self.client.post(reverse('cart:cart_add'), {'product_id': self.product.id, 'quantity': 1})
         response = self.client.get(reverse('orders:checkout'))
         self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, 'orders/checkout.html')
+        self.assertTemplateUsed(response, 'orders/template/orders/checkout.html')
 
 # Create your tests here.
